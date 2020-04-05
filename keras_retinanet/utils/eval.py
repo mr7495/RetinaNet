@@ -176,6 +176,8 @@ def evaluate(
     average_precisions = {}
     f1_score={}
     accuracy={}
+    TPL={}
+    FPL={}
 
     # all_detections = pickle.load(open('all_detections.pkl', 'rb'))
     # all_annotations = pickle.load(open('all_annotations.pkl', 'rb'))
@@ -257,9 +259,12 @@ def evaluate(
             accuracy[label]=tp/(tp+fp+fn)
         except:
             accuracy[label]=0
-        
+        TPL[label]=true_positives
+        FPL[label]=false_positives
     # inference time
     inference_time = np.sum(all_inferences) / generator.size()
+    print('TPL',TPL)
+    print('FPL',FPL)
     print('AP:',average_precisions)
     print('F1:',f1_score)
     print('Accuracy:',accuracy)

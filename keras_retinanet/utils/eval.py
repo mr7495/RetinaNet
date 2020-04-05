@@ -250,4 +250,4 @@ def evaluate(
     print('AP:',average_precisions)
     print('F1:',f1_score)
     print('Accuracy:',accuracy)
-    return average_precisions, inference_time
+    return average_precisions, f1_score, accuracy

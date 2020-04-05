@@ -174,6 +174,8 @@ def evaluate(
     all_detections, all_inferences = _get_detections(generator, model, score_threshold=score_threshold, max_detections=max_detections, save_path=save_path)
     all_annotations    = _get_annotations(generator)
     average_precisions = {}
+    f1_score={}
+    accuracy={}
 
     # all_detections = pickle.load(open('all_detections.pkl', 'rb'))
     # all_annotations = pickle.load(open('all_annotations.pkl', 'rb'))
@@ -219,6 +221,8 @@ def evaluate(
         # no annotations -> AP for this class is 0 (is this correct?)
         if num_annotations == 0:
             average_precisions[label] = 0, 0
+            f1_score[label]=0
+            accuracy[label]=0
             continue
 
         # sort by score
@@ -229,7 +233,9 @@ def evaluate(
         # compute false positives and true positives
         false_positives = np.cumsum(false_positives)
         true_positives  = np.cumsum(true_positives)
-
+        tp=max(true_positives)
+        fp=max(false_positives)
+        fn=num_annotations-tp
         # compute recall and precision
         recall    = true_positives / num_annotations
         precision = true_positives / np.maximum(true_positives + false_positives, np.finfo(np.float64).eps)
@@ -237,8 +243,11 @@ def evaluate(
         # compute average precision
         average_precision  = _compute_ap(recall, precision)
         average_precisions[label] = average_precision, num_annotations
-
+        f1_score[label]=(2*(tp/num_annotations)*(tp/(tp+fp)))/((tp/num_annotations)+(tp/(tp+fp)))
+        accuracy[label]=tp/(tp+fp+fn)
     # inference time
     inference_time = np.sum(all_inferences) / generator.size()
-
+    print('AP:',average_precisions)
+    print('F1:',f1_score)
+    print('Accuracy:',accuracy)
     return average_precisions, inference_time

@@ -249,8 +249,15 @@ def evaluate(
         # compute average precision
         average_precision  = _compute_ap(recall, precision)
         average_precisions[label] = average_precision, num_annotations
-        f1_score[label]=(2*(tp/num_annotations)*(tp/(tp+fp)))/((tp/num_annotations)+(tp/(tp+fp)))
-        accuracy[label]=tp/(tp+fp+fn)
+        try:
+            f1_score[label]=(2*(tp/num_annotations)*(tp/(tp+fp)))/((tp/num_annotations)+(tp/(tp+fp)))
+        except:
+            f1_score[label]=0
+        try:
+            accuracy[label]=tp/(tp+fp+fn)
+        except:
+            accuracy[label]=0
+        
     # inference time
     inference_time = np.sum(all_inferences) / generator.size()
     print('AP:',average_precisions)

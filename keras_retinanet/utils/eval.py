@@ -233,8 +233,14 @@ def evaluate(
         # compute false positives and true positives
         false_positives = np.cumsum(false_positives)
         true_positives  = np.cumsum(true_positives)
-        tp=max(true_positives)
-        fp=max(false_positives)
+        try:
+            tp=max(true_positives)
+        except:
+            tp=0
+        try:
+            fp=max(false_positives)
+        except:
+            fp=0
         fn=num_annotations-tp
         # compute recall and precision
         recall    = true_positives / num_annotations

@@ -154,7 +154,7 @@ def evaluate(
     generator,
     model,
     iou_threshold=0.5,
-    score_threshold=0.05,
+    score_threshold=0.5,
     max_detections=100,
     save_path=None
 ):

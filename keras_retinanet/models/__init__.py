@@ -55,6 +55,8 @@ def backbone(backbone_name):
         from .senet import SeBackbone as b
     elif 'resnet' in backbone_name:
         from .resnet import ResNetBackbone as b
+    elif 'xception' in backbone_name:
+        from .xception import XceptionBackbone as b
     elif 'mobilenet' in backbone_name:
         from .mobilenet import MobileNetBackbone as b
     elif 'vgg' in backbone_name:

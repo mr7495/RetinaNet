@@ -193,7 +193,7 @@ def __build_model_pyramid(name, model, features):
     """
     #return keras.layers.Concatenate(axis=1, name=name)([model(f) for f in features])
     print(model(features[0])
-    return ([model(f) for f in features])
+    return([model(f) for f in features])
 
 
 def __build_pyramid(models, features):

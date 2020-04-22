@@ -14,7 +14,7 @@ limitations under the License.
 import keras
 from keras.utils import get_file
 import keras_resnet
-from keras_applications.xception import Xception
+from keras.applications.xception import Xception
 from . import retinanet
 from . import Backbone
 from ..utils.image import preprocess_image
@@ -75,7 +75,7 @@ def xception_retinanet(num_classes, backbone='xception', inputs=None, modifier=N
 
     # create the resnet backbone
     if backbone == 'xception':
-        xception_model = Xception(input_shape=inputs,weights='imagenet', include_top=False)
+        xception_model = Xception(weights='imagenet', include_top=False, input_tensor=inputs)
     else:
         raise ValueError('Backbone (\'{}\') is invalid.'.format(backbone))
 

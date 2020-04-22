@@ -18,7 +18,7 @@ from keras.applications.xception import Xception
 from . import retinanet
 from . import Backbone
 from ..utils.image import preprocess_image
-
+import keras.backend as k
 
 class XceptionBackbone(Backbone):
     """ Describes backbone information and provides utility functions.
@@ -65,7 +65,7 @@ class XceptionBackbone(Backbone):
 
 def xception_retinanet(num_classes, backbone='xception', inputs=None, modifier=None, **kwargs):
 
-    
+    k.clear_session()
     # choose default input
     if inputs is None:
         if keras.backend.image_data_format() == 'channels_first':

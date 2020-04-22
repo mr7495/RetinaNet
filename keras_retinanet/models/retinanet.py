@@ -191,8 +191,8 @@ def __build_model_pyramid(name, model, features):
     Returns
         A tensor containing the response from the submodel on the FPN features.
     """
-    #return keras.layers.Concatenate(axis=1, name=name)([model(f) for f in features])
-    return model(features[0])
+    return keras.layers.Concatenate(axis=1, name=name)([model(f) for f in features])
+
 
 
 def __build_pyramid(models, features):
@@ -280,7 +280,7 @@ def retinanet(
     features = create_pyramid_features(C3, C4, C5)
 
     # for all pyramid levels, run available submodels
-    pyramids = __build_pyramid(submodels, [C5])
+    return keras.models.Model(inputs=inputs, outputs=pyramids, name=name)
 
     return keras.models.Model(inputs=inputs, outputs=pyramids, name=name)
 

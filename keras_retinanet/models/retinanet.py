@@ -325,10 +325,11 @@ def retinanet_bbox(
     if model is None:
         model = retinanet(num_anchors=anchor_params.num_anchors(), **kwargs)
     else:
-        assert_training_model(model)
+        pass
+        #assert_training_model(model)
 
     # compute the anchors
-    features = [model.get_layer(p_name).output for p_name in ['P3', 'P4', 'P5', 'P6', 'P7']]
+    features = [model.get_layer(p_name).output for p_name in ['block14_sepconv2_act']]
     anchors  = __build_anchors(anchor_params, features)
 
     # we expect the anchors, regression and classification values as first output

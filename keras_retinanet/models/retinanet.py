@@ -278,11 +278,10 @@ def retinanet(
 
     # compute pyramid features as per https://arxiv.org/abs/1708.02002
     features = create_pyramid_features(C3, C4, C5)
-
+    pyramids = __build_pyramid(submodels, features)
     # for all pyramid levels, run available submodels
     return keras.models.Model(inputs=inputs, outputs=pyramids, name=name)
 
-    return keras.models.Model(inputs=inputs, outputs=pyramids, name=name)
 
 
 def retinanet_bbox(

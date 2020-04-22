@@ -233,7 +233,7 @@ def __build_anchors(anchor_parameters, features):
         )(f) for i, f in enumerate(features)
     ]
 
-    return anchors[0]
+    return keras.layers.Concatenate(axis=1, name='anchors')(anchors)
 
 
 def retinanet(
@@ -325,11 +325,10 @@ def retinanet_bbox(
     if model is None:
         model = retinanet(num_anchors=anchor_params.num_anchors(), **kwargs)
     else:
-        pass
-        #assert_training_model(model)
+        assert_training_model(model)
 
     # compute the anchors
-    features = [model.get_layer(p_name).output for p_name in ['block14_sepconv2_act']]
+    features = [model.get_layer(p_name).output for p_name in ['P3', 'P4', 'P5', 'P6', 'P7']]
     anchors  = __build_anchors(anchor_params, features)
 
     # we expect the anchors, regression and classification values as first output

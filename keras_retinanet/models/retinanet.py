@@ -281,7 +281,7 @@ def retinanet(
     # for all pyramid levels, run available submodels
     pyramids = __build_pyramid(submodels, features)
 
-    return keras.models.Model(inputs=inputs, outputs=pyramids, name=name)
+    return keras.models.Model(inputs=inputs, outputs=C5, name=name)
 
 
 def retinanet_bbox(

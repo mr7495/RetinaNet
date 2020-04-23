@@ -21,7 +21,7 @@ from keras.utils import get_file
 from . import retinanet
 from . import Backbone
 from ..utils.image import preprocess_image
-
+import keras.backend as k
 
 class VGGBackbone(Backbone):
     """ Describes backbone information and provides utility functions.
@@ -78,6 +78,7 @@ def vgg_retinanet(num_classes, backbone='vgg16', inputs=None, modifier=None, **k
     Returns
         RetinaNet model with a VGG backbone.
     """
+    k.clear_session()
     # choose default input
     if inputs is None:
         inputs = keras.layers.Input(shape=(None, None, 3))

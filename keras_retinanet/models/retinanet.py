@@ -1,8 +1,8 @@
 import keras
-from keras_retinanet import initializers
-from keras_retinanet import layers
-from keras_retinanet.utils.anchors import AnchorParameters
-from keras_retinanet.models import assert_training_model
+from .. import initializers
+from .. import layers
+from ..utils.anchors import AnchorParameters
+from . import assert_training_model
 def default_classification_model(
     num_classes,
     num_anchors,

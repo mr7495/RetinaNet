@@ -71,7 +71,7 @@ def concat_retinanet(num_classes, backbone='concat', inputs=None, modifier=None,
 
     # create the full model
     vgg_layer_names = ["block3_pool", "block4_pool", "block5_pool"]
-    resnet_layer_names=["conv3_block4_out","conv4_bloack6_out","conv5_block3_out"]
+    resnet_layer_names=["conv3_block4_out","conv4_block6_out","conv5_block3_out"]
     layer_outputs = [vgg.get_layer(name).output for name in vgg_layer_names]
     for name in resnet_layer_names:
         layer_outputs.append(resnet.get_layer(name))

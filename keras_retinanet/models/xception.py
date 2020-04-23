@@ -58,7 +58,7 @@ class XceptionBackbone(Backbone):
         return preprocess_image(inputs, mode='caffe')
 
 
-def xception_retinanet(num_classes, backbone='xception', inputs=None, modifier=None, **kwargs):
+def xception_retinanet(num_classes, backbone='imagenet', inputs=None, modifier=None, **kwargs):
 
     k.clear_session()
     # choose default input

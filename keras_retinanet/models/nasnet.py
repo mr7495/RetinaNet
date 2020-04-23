@@ -70,7 +70,7 @@ def nasnet_retinanet(num_classes, backbone='nasnet', inputs=None, modifier=None,
 
     # create the resnet backbone
     if backbone == 'nasnet':
-        nasnet_model = NASNetLarge(weights='imagenet', include_top=False, input_tensor=inputs)
+        nasnet_model = NASNetLarge(weights=None, include_top=False, input_tensor=inputs)
     else:
         raise ValueError('Backbone (\'{}\') is invalid.'.format(backbone))
 

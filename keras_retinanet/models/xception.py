@@ -70,7 +70,7 @@ def xception_retinanet(num_classes, backbone='xception', inputs=None, modifier=N
 
     # create the resnet backbone
     if backbone == 'xception':
-        xception_model = Xception(weights='None', include_top=False, input_tensor=inputs)
+        xception_model = Xception(weights=None, include_top=False, input_tensor=inputs)
     else:
         raise ValueError('Backbone (\'{}\') is invalid.'.format(backbone))
 

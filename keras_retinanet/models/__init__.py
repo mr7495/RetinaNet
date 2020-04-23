@@ -57,6 +57,8 @@ def backbone(backbone_name):
         from .resnet import ResNetBackbone as b
     elif 'xception' in backbone_name:
         from .xception import XceptionBackbone as b
+    elif 'nasnet' in backbone_name:
+        from .nasnet import nasnetBackbone as b
     elif 'mobilenet' in backbone_name:
         from .mobilenet import MobileNetBackbone as b
     elif 'vgg' in backbone_name:

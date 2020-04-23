@@ -77,8 +77,8 @@ def nasnet_retinanet(num_classes, backbone='nasnet', inputs=None, modifier=None,
     # invoke modifier if given
     if modifier:
         nasnet_model = modifier(nasnet_model)
-    concatenated_features=[nasnet_model.get_layer('add_3').output,
-                           nasnet_model.get_layer('add_11').output,
+    concatenated_features=[nasnet_model.get_layer('add_4').output,
+                           nasnet_model.get_layer('activation_204').output,
                            nasnet_model.output]
     # create the full model
     return retinanet.retinanet(inputs=inputs, num_classes=num_classes, backbone_layers=concatenated_features, **kwargs)

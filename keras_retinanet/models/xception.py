@@ -13,7 +13,6 @@ limitations under the License.
 
 import keras
 from keras.utils import get_file
-import keras_resnet
 from keras.applications.xception import Xception
 from . import retinanet
 from . import Backbone
@@ -23,10 +22,6 @@ import keras.backend as k
 class XceptionBackbone(Backbone):
     """ Describes backbone information and provides utility functions.
     """
-
-    def __init__(self, backbone):
-        super(XceptionBackbone, self).__init__(backbone)
-        self.custom_objects.update(keras_resnet.custom_objects)
 
     def retinanet(self, *args, **kwargs):
         """ Returns a retinanet model using the correct backbone.
@@ -75,7 +70,7 @@ def xception_retinanet(num_classes, backbone='xception', inputs=None, modifier=N
 
     # create the resnet backbone
     if backbone == 'xception':
-        xception_model = Xception(weights='imagenet', include_top=False, input_tensor=inputs)
+        xception_model = Xception(weights='None', include_top=False, input_tensor=inputs)
     else:
         raise ValueError('Backbone (\'{}\') is invalid.'.format(backbone))
 

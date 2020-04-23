@@ -77,8 +77,8 @@ def xception_retinanet(num_classes, backbone='xception', inputs=None, modifier=N
     # invoke modifier if given
     if modifier:
         xception_model = modifier(xception_model)
-    concatenated_features=[xception_model.get_layer('add_51').output,
-                           xception_model.get_layer('add_59').output,
+    concatenated_features=[xception_model.get_layer('add_3').output,
+                           xception_model.get_layer('add_11').output,
                            xception_model.output]
     # create the full model
     return retinanet.retinanet(inputs=inputs, num_classes=num_classes, backbone_layers=concatenated_features, **kwargs)

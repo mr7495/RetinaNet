@@ -263,8 +263,8 @@ def evaluate(
         FPL[label]=false_positives
     # inference time
     inference_time = np.sum(all_inferences) / generator.size()
-    print('TPL',TPL)
-    print('FPL',FPL)
+    #print('TPL',TPL)
+    #print('FPL',FPL)
     print('AP:',average_precisions)
     print('F1:',f1_score)
     print('Accuracy:',accuracy)

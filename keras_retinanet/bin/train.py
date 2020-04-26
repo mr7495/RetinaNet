@@ -123,12 +123,12 @@ def create_models(backbone_retinanet, num_classes, weights, multi_gpu=0,
             'regression'    : losses.smooth_l1(),
             'classification': losses.focal()
         },
-        optimizer=keras.optimizers.adam(lr=lr, clipnorm=0.001)
+        optimizer=keras.optimizers.nadam(lr=lr)
     )
 
     return model, training_model, prediction_model
 
-
+#optimizer=keras.optimizers.adam(lr=lr, clipnorm=0.001)
 def create_callbacks(model, training_model, prediction_model, validation_generator, args):
     """ Creates the callbacks to use during training.
 

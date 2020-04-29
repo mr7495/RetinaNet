@@ -190,7 +190,7 @@ def main(args=None):
 
         print('mAP using the weighted average of precisions among classes: {:.4f}'.format(sum([a * b for a, b in zip(total_instances, precisions)]) / sum(total_instances)))
         print('mAP: {:.4f}'.format(sum(precisions) / sum(x > 0 for x in total_instances)))
-
+        print('F1',(inference_time[0]+inference_time[1])/2)
 
 if __name__ == '__main__':
     main()

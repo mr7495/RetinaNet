@@ -96,3 +96,4 @@ class Evaluate(keras.callbacks.Callback):
 
         if self.verbose == 1:
             print('mAP: {:.4f}'.format(self.mean_ap))
+            print('f1',(f1_score[0]+f1_score[1])/2)

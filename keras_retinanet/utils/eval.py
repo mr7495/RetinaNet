@@ -280,5 +280,5 @@ def evaluate(
     print('AP:',average_precisions)
     print('F1:',f1_score)
     print('Accuracy:',accuracy)
-    return average_precisions, f1_score, accuracy,recall,precision
+    return average_precisions, f1_score, accuracy,recall,precision,[max(TPL[0]),max(TPL[1])],[max(FPL[0]),max(FPL[1])]
     #return average_precisions,inference_time

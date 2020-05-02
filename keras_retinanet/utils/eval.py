@@ -175,8 +175,8 @@ def evaluate(
     all_annotations    = _get_annotations(generator)
     average_precisions = {}
     f1_score={}
-    recall={}
-    precision={}
+    Recall={}
+    Precision={}
     accuracy={}
     TPL={}
     FPL={}
@@ -226,8 +226,8 @@ def evaluate(
         if num_annotations == 0:
             average_precisions[label] = 0, 0
             f1_score[label]=0
-            recall[label]=0
-            precision[label]=0
+            Recall[label]=0
+            Precision[label]=0
             accuracy[label]=0
             continue
 
@@ -260,13 +260,13 @@ def evaluate(
         except:
             f1_score[label]=0
         try:
-            recall[label]=(tp/num_annotations)
+            Recall[label]=(tp/num_annotations)
         except:
-            recall[label]=0
+            Recall[label]=0
         try:
-            precision[label]=(tp/(tp+fp))
+            Precision[label]=(tp/(tp+fp))
         except:
-            precision[label]=0  
+            Precision[label]=0  
         try:
             accuracy[label]=tp/(tp+fp+fn)
         except:
@@ -280,5 +280,5 @@ def evaluate(
     print('AP:',average_precisions)
     print('F1:',f1_score)
     print('Accuracy:',accuracy)
-    return average_precisions, f1_score, accuracy,recall,precision,[max(TPL[0]),max(TPL[1])],[max(FPL[0]),max(FPL[1])]
+    return average_precisions, f1_score, accuracy,Recall,Precision,[max(TPL[0]),max(TPL[1])],[max(FPL[0]),max(FPL[1])]
     #return average_precisions,inference_time

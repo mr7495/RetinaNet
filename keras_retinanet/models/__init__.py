@@ -54,7 +54,10 @@ def backbone(backbone_name):
     elif 'seresnext' in backbone_name or 'seresnet' in backbone_name or 'senet' in backbone_name:
         from .senet import SeBackbone as b
     elif 'resnet' in backbone_name:
-        from .resnet import ResNetBackbone as b
+        if 'resnet50v2' in backbone_name:
+            from .resnetv2 import ResNetBackbone as b
+        else:
+            from .resnet import ResNetBackbone as b
     elif 'xception' in backbone_name:
         from .xception import XceptionBackbone as b
     elif 'nasnet' in backbone_name:
